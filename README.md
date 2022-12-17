@@ -1,2 +1,2 @@
-# postgres-k8s
-Simple template for creation of k8s postgres db with pgadmin
+# Templates for k8s postgres deploy
+
