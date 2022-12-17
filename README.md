@@ -2,9 +2,9 @@
 Simple template for creation of k8s pgadmin
 
 ## Create postgres admin in k8s enviroment
-In order to create all kubernetes components write following commands:\\
-`kubectl apply -f postgres-secret.yaml` -> create secret needed to service\\
-`kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database\\
+In order to create all kubernetes components write following commands:<br />
+`kubectl apply -f postgres-secret.yaml` -> create secret needed to service<br />
+`kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database<br />
 
 ## Output
 After execution commands your k8s enviroment should look like following one:
@@ -14,9 +14,9 @@ After execution commands your k8s enviroment should look like following one:
 Simple template for creation of k8s pgadmin
 
 ## Create postgres admin in k8s enviroment
-In order to create all kubernetes components write following commands:\\
-`kubectl apply -f postgres-secret.yaml` -> create secret needed to service \\
-`kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database\\
+In order to create all kubernetes components write following commands:<br />
+`kubectl apply -f postgres-secret.yaml` -> create secret needed to service<br />
+`kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database<br />
 
 ## Output
 After execution commands your k8s enviroment should look like following one:
