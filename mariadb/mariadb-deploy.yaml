@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deploy
+spec:
+  selector:
+    matchLabels:
+      app: mariadb
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:latest
+        imagePullPolicy: "IfNotPresent"
+        env:
+          - name: MARIADB_USER
+            valueFrom:
+              secretKeyRef:
+                name: mariadb-secret
+                key: mariadb-username
+          - name: MARIADB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb-secret
+                key: mariadb-password
+          - name: MARIADB_DB
+            valueFrom:
+              configMapKeyRef:
+                name: mariadb-configmap
+                key: mariadb-name
+        volumeMounts:
+          - mountPath: /var/lib/mariadb/data
+            name: mariadb
+      volumes:
+        - name: mariadb
+          persistentVolumeClaim:
+            claimName: mariadb-pv-claim
+---
+    kind: PersistentVolume
+    apiVersion: v1
+    metadata:
+      name: mariadb-pv-volume
+      labels:
+        type: local
+        app: mariadb
+    spec:
+      storageClassName: manual
+      capacity:
+        storage: 5Gi
+      accessModes:
+        - ReadWriteMany
+      hostPath: 
+        path: "/mnt/data"
+---
+    kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: postgres-pv-claim
+      labels:
+        app: mariadb
+    spec:
+      storageClassName: manual
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 5Gi
+---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: mariadb
+      labels:
+        app: mariadb
+    spec:
+      ports:
+        - name: mariadb
+          port: 5432
+          nodePort: 30432
+      type: NodePort
+      selector:
+        app: mariadb
