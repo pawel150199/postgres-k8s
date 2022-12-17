@@ -7,7 +7,7 @@ In order to create all kubernetes components write following commands:
 `kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database
 
 ## Output
-After execute commands your k8s enviroment should look like following one:
+After execution commands your k8s enviroment should look like following one:
 <img src="./images/pgadmin.png" alt="Pgadmin deploy">
 
 # postgres-k8s
@@ -19,5 +19,5 @@ In order to create all kubernetes components write following commands:
 `kubectl apply -f postgres-deploy.yaml` -> create deploy of postgres database
 
 ## Output
-After execute commands your k8s enviroment should look like following one:
+After execution commands your k8s enviroment should look like following one:
 <img src="./images/pgadmin.png" alt="Pgadmin deploy">
